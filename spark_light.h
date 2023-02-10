@@ -1,12 +1,20 @@
 #ifndef SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
 #define SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
 
+typedef union {
+
+} __attribute__ ((__packed__)) spark_light_command_data_t;
+
+typedef enum {
+    BUTTON_PRESS,
+    BUTTON_RELEASE,
+} __attribute__ ((__packed__)) spark_light_command_type_t;
+
 typedef struct {
-    uint8_t state;                        //Indicate that if has received broadcast ESPNOW data or not.
-    uint16_t seq_num;                     //Sequence number of ESPNOW data.
-    uint16_t crc;                         //CRC16 value of ESPNOW data.
-    uint32_t magic;                       //Magic number which is used to determine which device to send unicast ESPNOW data.
-    uint8_t payload[0];                   //Real payload of ESPNOW data.
-} __attribute__((packed)) example_espnow_data_t;
+    uint8_t len;                          /// Data length of payload
+    uint16_t crc;                         /// CRC16 value of payload
+    spark_light_command_type_t cmd;       /// Command
+    spark_light_command_data_t cmd_data;  /// Command-specific data
+} __attribute__((packed)) spark_light_espnow_packet_t;
 
 #endif //SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
