@@ -10,6 +10,7 @@ typedef struct {
 
 typedef union {
     spark_light_button_event button_event_data;
+    uint8_t rotary_encoder_position;
 } __attribute__ ((__packed__)) spark_light_command_data_t;
 
 typedef enum {
