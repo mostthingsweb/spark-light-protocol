@@ -1,13 +1,20 @@
 #ifndef SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
 #define SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
 
-typedef union {
+#include "iot_button.h"
 
+typedef struct {
+    button_event_t iot_event;
+    uint8_t button_id;
+} spark_light_button_event;
+
+typedef union {
+    spark_light_button_event button_event_data;
 } __attribute__ ((__packed__)) spark_light_command_data_t;
 
 typedef enum {
-    BUTTON_PRESS,
-    BUTTON_RELEASE,
+    BUTTON_EVENT,
+    ROTARY_ENCODER_EVENT,
 } __attribute__ ((__packed__)) spark_light_command_type_t;
 
 typedef struct {
