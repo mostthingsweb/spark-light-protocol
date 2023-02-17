@@ -23,6 +23,7 @@ typedef struct {
     uint16_t crc;                         /// CRC16 value of payload
     spark_light_command_type_t cmd;       /// Command
     spark_light_command_data_t cmd_data;  /// Command-specific data
+    int64_t ticks;                        /// System uptime
 } __attribute__((packed)) spark_light_espnow_packet_t;
 
 #endif //SPARK_LIGHT_REMOTE_SPARK_LIGHT_H
